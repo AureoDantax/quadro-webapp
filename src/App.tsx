@@ -1,11 +1,12 @@
-import HelloWorld from "./components/RamonRuim";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./routes/index";
 
 function App() {
   return (
-    <>
-      <HelloWorld />
-    </>
-  );
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  )
 }
 
 export default App;
