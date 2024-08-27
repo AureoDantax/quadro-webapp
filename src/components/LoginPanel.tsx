@@ -1,15 +1,46 @@
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
+import backgroundImage from '../assets/background-image.jpg';
 
-const Login = styled.div`
-width: 100%;
-font-size: 70px;
-font-family: Arial, Helvetica, sans-serif;
-background-color: #FFFF00;
+const LoginContainer = styled.div`
+  padding-left: 75px;
+  padding-right: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  height: 630px;
+  border-radius: 30px;
+  background: #FFF;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.10);
 `;
 
-const LoginDiv = () => {
-return(
-    <Login>TESTE</Login>
-);
+const BackgroundContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+`;
+
+interface LoginDivProps {
+    children: ReactNode;
 }
-export default LoginDiv
+
+const LoginDiv: React.FC<LoginDivProps> = ({ children }) => {
+    return (
+        <>
+            <BackgroundContainer>
+                <LoginContainer>
+                    {children}
+                </LoginContainer>
+            </BackgroundContainer>
+        </>
+    );
+}
+
+export default LoginDiv;
