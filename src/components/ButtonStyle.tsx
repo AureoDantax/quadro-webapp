@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, MouseEventHandler } from 'react';
 import styled from 'styled-components';
 
 interface ButtonStyleProps {
     type?: 'button' | 'submit' | 'reset';
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     children: ReactNode;
 }
 
@@ -30,9 +31,9 @@ const Button = styled.button`
     }
 `;
 
-const ButtonStyle: React.FC<ButtonStyleProps> = ({ children, type = 'button' }) => {
+const ButtonStyle: React.FC<ButtonStyleProps> = ({ children, type = 'button', onClick}) => {
     return (
-        <Button type={type}>
+        <Button type={type} onClick={onClick}>
             {children}
         </Button>
     );

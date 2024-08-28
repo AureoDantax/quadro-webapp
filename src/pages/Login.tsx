@@ -4,6 +4,7 @@ import Logologin from "../components/LogoQuadro";
 import InputStyle from "../components/InputStyle";
 import { createGlobalStyle } from 'styled-components';
 import { OuLabel, StyledLabel } from "../components/LoginLabel";
+import { useNavigateToCadastro } from '../hooks/useNavigateToCadastro';
 
 const GlobalStyleCreate = createGlobalStyle`
   * {
@@ -20,6 +21,7 @@ const GlobalStyleCreate = createGlobalStyle`
 `;
 
 export function Login() {
+  const { goToCadastro } = useNavigateToCadastro();
   return (
     <>
       <GlobalStyleCreate />
@@ -31,7 +33,7 @@ export function Login() {
         <InputStyle type="password" placeholder="Insira sua senha" />
         <ButtonStyle>Entrar</ButtonStyle>
         <OuLabel>ou</OuLabel>
-        <ButtonStyle>Cadastre-se</ButtonStyle>
+        <ButtonStyle onClick={goToCadastro}>Cadastre-se</ButtonStyle>
       </LoginDiv>
     </>
   )
