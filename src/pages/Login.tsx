@@ -26,9 +26,9 @@ export function Login() {
                 <LoginDiv>
                     <Logologin />
                     <EmailLabel>E-mail</EmailLabel>
-                    <InputStyle />
+                    <InputStyle placeholder="Insira seu e-mail"/>
                     <SenhaLabel>Senha</SenhaLabel>
-                    <InputStyle type="password" />
+                    <InputStyle type="password" placeholder="Insira sua senha"/>
                     <ButtonStyle>Entrar</ButtonStyle>
                     <OuLabel>ou</OuLabel>
                     <ButtonStyle>Cadastre-se</ButtonStyle>

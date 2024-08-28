@@ -16,12 +16,12 @@ cursor: pointer;
 font-size: 24px;
 
 &:focus {
-    outline: none; /* Remove o contorno padrão ao focar */
+    outline: none;
   }
 
 &:active {
-    background-color: #FF8800; /* Cor de fundo ao clicar */
-    transform: scale(0.95); /* Um leve efeito de redução no tamanho para dar a sensação de clique */
+    background-color: #FF8800;
+    transform: scale(0.95);
   }
 `;
 

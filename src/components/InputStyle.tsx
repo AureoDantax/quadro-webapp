@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 interface InputStyleProps {
-    type?: string;  // Define a propriedade type como opcional
+    type?: string;
+    placeholder?: string;
   }
 
 const InputDiv = styled.input`
@@ -22,9 +23,9 @@ const InputDiv = styled.input`
   }
 `;
 
-const InputStyle: React.FC<InputStyleProps> = ({ type = 'text' }) => {
+const InputStyle: React.FC<InputStyleProps> = ({ type = 'text' , placeholder = 'Insira'}) => {
     return (
-        <InputDiv type={type} />
+        <InputDiv type={type} placeholder={placeholder} minLength={8}/>
     );
 }
 
