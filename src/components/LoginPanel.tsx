@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import backgroundImage from '../assets/background-image.jpg';
 
 const LoginContainer = styled.div`
-  padding-left: 75px;
-  padding-right: 75px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 600px;
-  height: 630px;
+  width: auto;
+  height: auto;
   border-radius: 30px;
   background: #FFF;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.10);

@@ -3,7 +3,7 @@ import LoginDiv from "../components/LoginPanel";
 import Logologin from "../components/LogoQuadro";
 import InputStyle from "../components/InputStyle";
 import { createGlobalStyle } from 'styled-components';
-import {EmailLabel, OuLabel, SenhaLabel} from "../components/LoginLabel";
+import { OuLabel, StyledLabel } from "../components/LoginLabel";
 
 const GlobalStyleCreate = createGlobalStyle`
   * {
@@ -20,19 +20,19 @@ const GlobalStyleCreate = createGlobalStyle`
 `;
 
 export function Login() {
-    return (
-        <>
-            <GlobalStyleCreate/>
-                <LoginDiv>
-                    <Logologin />
-                    <EmailLabel>E-mail</EmailLabel>
-                    <InputStyle placeholder="Insira seu e-mail"/>
-                    <SenhaLabel>Senha</SenhaLabel>
-                    <InputStyle type="password" placeholder="Insira sua senha"/>
-                    <ButtonStyle>Entrar</ButtonStyle>
-                    <OuLabel>ou</OuLabel>
-                    <ButtonStyle>Cadastre-se</ButtonStyle>
-                </LoginDiv>
-        </>
-    )
+  return (
+    <>
+      <GlobalStyleCreate />
+      <LoginDiv>
+        <Logologin />
+        <StyledLabel>E-mail</StyledLabel>
+        <InputStyle placeholder="Insira seu e-mail" />
+        <StyledLabel>Senha</StyledLabel>
+        <InputStyle type="password" placeholder="Insira sua senha" />
+        <ButtonStyle>Entrar</ButtonStyle>
+        <OuLabel>ou</OuLabel>
+        <ButtonStyle>Cadastre-se</ButtonStyle>
+      </LoginDiv>
+    </>
+  )
 }

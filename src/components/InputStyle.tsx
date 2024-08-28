@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 interface InputStyleProps {
-    type?: string;
-    placeholder?: string;
-  }
+  type?: string;
+  placeholder?: string;
+}
 
 const InputDiv = styled.input`
   align-self: center;
   margin-bottom: 10px;
-  width: 457px;
-  height: 60px;
+  width: 357px;
+  height: 50px;
   flex-shrink: 0;
   border-radius: 30px;
   border: none;
@@ -23,10 +23,10 @@ const InputDiv = styled.input`
   }
 `;
 
-const InputStyle: React.FC<InputStyleProps> = ({ type = 'text' , placeholder = 'Insira'}) => {
-    return (
-        <InputDiv type={type} placeholder={placeholder} minLength={8}/>
-    );
+const InputStyle: React.FC<InputStyleProps> = ({ type = 'text', placeholder = 'Insira' }) => {
+  return (
+    <InputDiv type={type} placeholder={placeholder} />
+  );
 }
 
 export default InputStyle;
