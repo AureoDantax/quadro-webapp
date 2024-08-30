@@ -3,6 +3,8 @@ import styled from 'styled-components';
 interface InputStyleProps {
   type?: string;
   placeholder?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputDiv = styled.input`
@@ -23,9 +25,9 @@ const InputDiv = styled.input`
   }
 `;
 
-const InputStyle: React.FC<InputStyleProps> = ({ type = 'text', placeholder = 'Insira' }) => {
+const InputStyle: React.FC<InputStyleProps> = ({ type = 'text', placeholder = 'Insira', value, onChange}) => {
   return (
-    <InputDiv type={type} placeholder={placeholder} />
+    <InputDiv type={type} placeholder={placeholder} value={value} onChange={onChange} />
   );
 }
 

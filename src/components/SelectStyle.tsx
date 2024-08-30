@@ -6,13 +6,13 @@ const SelectStyle = styled.select`
   padding: 10px;
   margin: 10px 0;
   border: 2px solid #ccc;
-  border-radius: 5px;
+  border-radius: 30px;
   background-color: #f8f8f8;
   font-size: 16px;
   color: #333;
 
   &:focus {
-    border-color: #007bff;
+    border-color: #FFA800;
     background-color: #fff;
     outline: none;
   }

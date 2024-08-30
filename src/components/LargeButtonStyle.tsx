@@ -31,7 +31,7 @@ const Button = styled.button`
     }
 `;
 
-const ButtonStyle: React.FC<ButtonStyleProps> = ({ children, type = 'button', onClick}) => {
+const LargeButtonStyle: React.FC<ButtonStyleProps> = ({ children, type = 'button', onClick}) => {
     return (
         <Button type={type} onClick={onClick}>
             {children}
@@ -39,4 +39,4 @@ const ButtonStyle: React.FC<ButtonStyleProps> = ({ children, type = 'button', on
     );
 }
 
-export default ButtonStyle;
+export default LargeButtonStyle;

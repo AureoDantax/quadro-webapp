@@ -1,12 +1,12 @@
-import ButtonStyle from "../components/ButtonStyle";
+import LargeButtonStyle from "../components/LargeButtonStyle";
 import LoginDiv from "../components/LoginPanel";
 import Logologin from "../components/LogoQuadro";
 import InputStyle from "../components/InputStyle";
 import { createGlobalStyle } from 'styled-components';
-import { OuLabel, StyledLabel } from "../components/LoginLabel";
+import { CenterLabel, LeftLabel } from "../components/LoginLabel";
 import { useNavigateToCadastro } from '../hooks/useNavigateToCadastro';
 
-const GlobalStyleCreate = createGlobalStyle`
+const GlobalStyleCreate = createGlobalStyle` /* ESTILO GLOBAL, BOM UTILIZAR EM TODA PÁGINA */
   * {
     margin: 0;
     padding: 0;
@@ -17,6 +17,14 @@ const GlobalStyleCreate = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -27,13 +35,13 @@ export function Login() {
       <GlobalStyleCreate />
       <LoginDiv>
         <Logologin />
-        <StyledLabel>E-mail</StyledLabel>
+        <LeftLabel>E-mail</LeftLabel>
         <InputStyle placeholder="Insira seu e-mail" />
-        <StyledLabel>Senha</StyledLabel>
+        <LeftLabel>Senha</LeftLabel>
         <InputStyle type="password" placeholder="Insira sua senha" />
-        <ButtonStyle>Entrar</ButtonStyle>
-        <OuLabel>ou</OuLabel>
-        <ButtonStyle onClick={goToCadastro}>Cadastre-se</ButtonStyle>
+        <LargeButtonStyle>Entrar</LargeButtonStyle>
+        <CenterLabel>ou</CenterLabel>
+        <LargeButtonStyle onClick={goToCadastro}>Cadastre-se</LargeButtonStyle>
       </LoginDiv>
     </>
   )
