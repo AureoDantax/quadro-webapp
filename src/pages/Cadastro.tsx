@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import LargeButtonStyle from "../components/LargeButtonStyle";
 import InputStyle from "../components/InputStyle";
-import { createGlobalStyle } from 'styled-components';
 import { CenterLabel, LeftLabel } from "../components/LoginLabel";
 import CadastroDiv from "../components/CadastroPanel";
 import UserTypeSelector from '../components/UserTypeStyle';
@@ -11,28 +10,7 @@ import ModalDialog from '../components/ModalDialog';
 import { enviarDadosCadastro } from '../services/api';
 import { useNavigateToLogin } from '../hooks/useNavigateToLogin';
 import Spinner from '../components/SpinnerStyle';
-
-const GlobalStyleCreate = createGlobalStyle` /* ESTILO GLOBAL, BOM UTILIZAR EM TODA PÁGINA */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  html {
-    width: 100%;
-    height: 100%;
-  }
-`;
+import DisableZoom from '../components/DisableZoom';
 
 const FormContainer = styled.div`  /* Falhei em tentar colocar a separação de colunas no container do cadastro então deixei aqui msm.*/
   display: flex;
@@ -173,9 +151,9 @@ export function Cadastro() {
   // SE TIVER ALGUM ERRO, ME AVISE! E LEMBRANDO QUE NÃO CONSIGO COMENTAR DENTRO DO RETURN POR ISSO N TEM NADA.
   return (
     <>
-      <GlobalStyleCreate />
       <CadastroDiv>
-      {isLoading && <Spinner />}
+        <DisableZoom />
+        {isLoading && <Spinner />}
         <form onSubmit={handleSubmit}>
           <UserTypeSelector userType={userType} setUserType={setUserType} />
           <FormContainer>
@@ -187,9 +165,9 @@ export function Cadastro() {
               {userType === 'professor' && (
                 <>
                   <LeftLabel>CPF</LeftLabel>
-                  <InputStyle placeholder="Insira seu CPF" value={cpf} onChange={handleCpfChange} maxLength={14}/>
+                  <InputStyle placeholder="Insira seu CPF" value={cpf} onChange={handleCpfChange} maxLength={14} />
                   <LeftLabel>Número de telefone</LeftLabel>
-                  <InputStyle placeholder="Insira seu número" value={telefone} onChange={handleTelefoneChange} maxLength={15}/>
+                  <InputStyle placeholder="Insira seu número" value={telefone} onChange={handleTelefoneChange} maxLength={15} />
                 </>
               )}
               <LeftLabel>Instituição de Ensino</LeftLabel>
