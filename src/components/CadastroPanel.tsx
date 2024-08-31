@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import backgroundImage from '../assets/background-image.jpg';
 
-const LoginContainer = styled.div`
+const CadastroContainer = styled.div`
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -26,20 +26,20 @@ const BackgroundContainer = styled.div`
   height: 100vh;
 `;
 
-interface LoginDivProps {
+interface CadastroDivProps {
     children: ReactNode;
 }
 
-const LoginDiv: React.FC<LoginDivProps> = ({ children }) => {
+const CadastroDiv: React.FC<CadastroDivProps> = ({ children }) => {
     return (
         <>
             <BackgroundContainer>
-                <LoginContainer>
+                <CadastroContainer>
                     {children}
-                </LoginContainer>
+                </CadastroContainer>
             </BackgroundContainer>
         </>
     );
 }
 
-export default LoginDiv;
+export default CadastroDiv;

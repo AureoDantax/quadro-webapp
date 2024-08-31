@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
 interface InputStyleProps {
-    type?: string;  // Define a propriedade type como opcional
-  }
+  type?: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  maxLength?: number;
+}
 
 const InputDiv = styled.input`
   align-self: center;
   margin-bottom: 10px;
-  width: 457px;
-  height: 60px;
+  width: 357px;
+  height: 50px;
   flex-shrink: 0;
   border-radius: 30px;
   border: none;
@@ -22,10 +26,10 @@ const InputDiv = styled.input`
   }
 `;
 
-const InputStyle: React.FC<InputStyleProps> = ({ type = 'text' }) => {
-    return (
-        <InputDiv type={type} />
-    );
+const InputStyle: React.FC<InputStyleProps> = ({ type = 'text', placeholder = 'Insira', value, onChange, maxLength}) => {
+  return (
+    <InputDiv type={type} placeholder={placeholder} value={value} onChange={onChange} maxLength={maxLength}/>
+  );
 }
 
 export default InputStyle;
