@@ -21,6 +21,7 @@ João.
 ## Configurações iniciais
 
 Para configurar o ambiente de desenvolvimento, siga os passos abaixo:
+<<<<<<< HEAD
 
 1. Clone este repositório em sua máquina local utilizando o GIT:
 
@@ -45,3 +46,27 @@ npm run start
 ```bash
 http://localhost:3000
 ```
+=======
+
+1. Clone este repositório em sua máquina local utilizando o GIT:
+
+bash
+git clone https://github.com/AureoDantax/quadro-webapp
+
+
+2. Já no VSCode, instale as dependências do projeto:
+bash
+npm install
+
+
+3. Inicie o servidor de desenvolvimento:
+
+bash
+npm run start
+
+
+4. Agora só acessar a aplicação no seu navegador através do seguinte endereço:
+
+
+http://localhost:3000
+>>>>>>> d99ed6a8275ad8176a621112e504b463a61913fe
