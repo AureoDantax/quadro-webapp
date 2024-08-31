@@ -5,6 +5,7 @@ interface ButtonStyleProps {
     type?: 'button' | 'submit' | 'reset';
     onClick?: MouseEventHandler<HTMLButtonElement>;
     children: ReactNode;
+    disabled?: boolean;
 }
 
 const Button = styled.button`
@@ -31,9 +32,9 @@ const Button = styled.button`
     }
 `;
 
-const LargeButtonStyle: React.FC<ButtonStyleProps> = ({ children, type = 'button', onClick}) => {
+const LargeButtonStyle: React.FC<ButtonStyleProps> = ({ children, type = 'button', onClick, disabled }) => {
     return (
-        <Button type={type} onClick={onClick}>
+        <Button type={type} onClick={onClick} disabled={disabled}>
             {children}
         </Button>
     );
