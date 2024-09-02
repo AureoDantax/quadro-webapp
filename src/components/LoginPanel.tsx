@@ -12,6 +12,14 @@ const LoginContainer = styled.div`
   border-radius: 30px;
   background: #FFF;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.10);
+
+  @media (max-width: 426px) {
+    padding: 20px;
+    flex-direction: column;
+    margin: 10px;
+    width: 70vh;
+    max-width: 70vh;
+  }
 `;
 
 const BackgroundContainer = styled.div`

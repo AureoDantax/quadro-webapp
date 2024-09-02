@@ -2,12 +2,10 @@ import LargeButtonStyle from "../components/LargeButtonStyle";
 import LoginDiv from "../components/LoginPanel";
 import Logologin from "../components/LogoQuadro";
 import InputStyle from "../components/InputStyle";
-import { CenterLabel, LeftLabel } from "../components/LoginLabel";
-import { useNavigateToCadastro } from '../hooks/useNavigateToCadastro';
+import { LeftLabel } from "../components/LoginLabel";
 import DisableZoom from "../components/DisableZoom";
 
 export function Login() {
-  const { goToCadastro } = useNavigateToCadastro();
   return (
     <>
       <LoginDiv>
@@ -18,8 +16,6 @@ export function Login() {
         <LeftLabel>Senha</LeftLabel>
         <InputStyle type="password" placeholder="Insira sua senha" />
         <LargeButtonStyle>Entrar</LargeButtonStyle>
-        <CenterLabel>ou</CenterLabel>
-        <LargeButtonStyle onClick={goToCadastro}>Cadastre-se</LargeButtonStyle>
       </LoginDiv>
     </>
   )

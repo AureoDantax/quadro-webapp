@@ -2,26 +2,14 @@ import { useState, useRef } from 'react';
 import LargeButtonStyle from "../components/LargeButtonStyle";
 import InputStyle from "../components/InputStyle";
 import { CenterLabel, LeftLabel } from "../components/LoginLabel";
-import CadastroDiv from "../components/CadastroPanel";
+import CadastroPanel from "../components/CadastroPanel";
 import UserTypeSelector from '../components/UserTypeStyle';
 import SelectStyle from '../components/SelectStyle';
-import styled from 'styled-components';
 import ModalDialog from '../components/ModalDialog';
 import { enviarDadosCadastro } from '../services/api';
 import { useNavigateToLogin } from '../hooks/useNavigateToLogin';
 import Spinner from '../components/SpinnerStyle';
 import DisableZoom from '../components/DisableZoom';
-
-const FormContainer = styled.div`  /* Falhei em tentar colocar a separação de colunas no container do cadastro então deixei aqui msm.*/
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 48%;
-`;
 
 export function Cadastro() {
   const [userType, setUserType] = useState<'aluno' | 'professor'>('aluno');
@@ -151,13 +139,12 @@ export function Cadastro() {
   // SE TIVER ALGUM ERRO, ME AVISE! E LEMBRANDO QUE NÃO CONSIGO COMENTAR DENTRO DO RETURN POR ISSO N TEM NADA.
   return (
     <>
-      <CadastroDiv>
+      <CadastroPanel>
+      <UserTypeSelector userType={userType} setUserType={setUserType} />
         <DisableZoom />
         {isLoading && <Spinner />}
         <form onSubmit={handleSubmit}>
-          <UserTypeSelector userType={userType} setUserType={setUserType} />
-          <FormContainer>
-            <Column>
+          <div>
               <LeftLabel>Apelido</LeftLabel>
               <InputStyle placeholder="Insira o apelido" value={apelido} onChange={(e) => setApelido(e.target.value)} />
               <LeftLabel>Nome Completo</LeftLabel>
@@ -176,8 +163,8 @@ export function Cadastro() {
                 <option value="senacitaquera">SENAC Itaquera</option>
                 <option value="senacsaomiguel">SENAC S.Miguel</option>
               </SelectStyle>
-            </Column>
-            <Column>
+              </div>
+              <div>
               <LeftLabel>E-mail</LeftLabel>
               <InputStyle placeholder="Insira o e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
               <LeftLabel>Senha</LeftLabel>
@@ -187,13 +174,12 @@ export function Cadastro() {
               <LargeButtonStyle type='submit' onClick={handleSubmit} disabled={isLoading}>
                 {isLoading ? 'Enviando...' : 'Cadastre-se'}
               </LargeButtonStyle>
-            </Column>
-          </FormContainer>
+              </div>
         </form>
         <ModalDialog ref={modalRef} onClose={() => modalRef.current?.close()}>
           <CenterLabel>{errorMessage}</CenterLabel>
         </ModalDialog>
-      </CadastroDiv>
+      </CadastroPanel>
     </>
   );
 }
