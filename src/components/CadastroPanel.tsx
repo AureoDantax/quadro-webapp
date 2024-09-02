@@ -7,11 +7,41 @@ const CadastroContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: auto;
+  width: 100%;
+  max-width: 900px;
   height: auto;
+  max-height: 90vh;
+  overflow-y: auto;
   border-radius: 30px;
   background: #FFF;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.10);
+  margin: 20px;
+
+  form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+      max-width: 425px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    form {
+      flex-direction: column;
+
+      & > div {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
 `;
 
 const BackgroundContainer = styled.div`
@@ -27,19 +57,17 @@ const BackgroundContainer = styled.div`
 `;
 
 interface CadastroDivProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
-const CadastroDiv: React.FC<CadastroDivProps> = ({ children }) => {
-    return (
-        <>
-            <BackgroundContainer>
-                <CadastroContainer>
-                    {children}
-                </CadastroContainer>
-            </BackgroundContainer>
-        </>
-    );
+const CadastroPanel: React.FC<CadastroDivProps> = ({ children }) => {
+  return (
+    <BackgroundContainer>
+      <CadastroContainer>
+        {children}
+      </CadastroContainer>
+    </BackgroundContainer>
+  );
 }
 
-export default CadastroDiv;
+export default CadastroPanel;

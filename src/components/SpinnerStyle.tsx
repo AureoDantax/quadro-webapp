@@ -1,24 +1,51 @@
-import styled, { keyframes } from 'styled-components';
-
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
+import styled from 'styled-components';
 
 const SpinnerWrapper = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
   display: flex;
-  align-self: center;
-  justify-self: center;
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  border-top-color: #3498db;
-  animation: ${spin} 1s ease-in-out infinite;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: #0000;
+  background: linear-gradient(90deg, #FFA800 calc(50% + 0.5ch), #c4c4c4 0) right/calc(200% + 1ch) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: l7 1s infinite steps(15);
+
+  &:before {
+    content: "Carregando...";
+  }
+
+  @keyframes l7 {
+    to {
+      background-position: left;
+    }
+  }
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+  z-index: 999; // isso peguei na net, faz com que o spinner fica em cima de tudo
 `;
 
 const SpinnerStyle = () => {
-  return <SpinnerWrapper />;
+  return (
+    <>
+      <Overlay>
+        <SpinnerWrapper />;
+      </Overlay>
+    </>
+  );
 };
 
 export default SpinnerStyle;

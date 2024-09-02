@@ -12,7 +12,7 @@ const Button = styled.button`
     align-self: center;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 357px;
+    width: 100%;
     height: 50px;
     flex-shrink: 0;
     background-color: #FFA800;

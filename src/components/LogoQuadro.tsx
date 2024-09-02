@@ -6,7 +6,7 @@ const LogoImage = styled.img`
   height: auto;
   display: block;
   margin: 0 auto;
-  padding-bottom: 60px;
+  padding-bottom: 10%;
 `;
 
 const Logologin: React.FC = () => {

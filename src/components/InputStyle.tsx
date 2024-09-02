@@ -11,7 +11,7 @@ interface InputStyleProps {
 const InputDiv = styled.input`
   align-self: center;
   margin-bottom: 10px;
-  width: 357px;
+  width: 100%;
   height: 50px;
   flex-shrink: 0;
   border-radius: 30px;
