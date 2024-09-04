@@ -23,7 +23,7 @@ export const enviarDadosCadastro = (formData: any) => {
 };
 
 export const verificarDadosLogin = (formData: any) => {
-  return api.post('/login', formData);
+  return api.post('/api/auth', formData);
   // o /login é o endpoint que o backend espera receber os dados do formulário de login
   // e o formData é o objeto que contém os dados do formulário de login
   // o backend vai verificar as credenciais e devolver uma resposta de sucesso ou erro
