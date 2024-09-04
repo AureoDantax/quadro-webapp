@@ -12,11 +12,13 @@ import Spinner from '../components/SpinnerStyle';
 import DisableZoom from '../components/DisableZoom';
 
 export function Cadastro() {
-  const [userType, setUserType] = useState<'aluno' | 'professor'>('aluno');
+  const [tipoUsuario, setTipoUsuario] = useState<'aluno' | 'professor'>('aluno');
   const [apelido, setApelido] = useState<string>('');
   const [nomecompleto, setNomecompleto] = useState<string>('');
   const [cpf, setCpf] = useState<string>(''); //aparentemente ele não pode estar vazio, então coloquei uma string vazia para usar mascara
+  const [telefoneOriginal, setTelefoneOriginal] = useState<string>(''); //esse é somente o número para o backend
   const [telefone, setTelefone] = useState<string>(''); //aparentemente ele não pode estar vazio, então coloquei uma string vazia
+  const [cpfOriginal, setCpfOriginal] = useState<string>(''); //esse é somente o número para o backend
   const [instituicao, setInstituicao] = useState<string>('senacsantoamaro');
   const [email, setEmail] = useState<string>('');
   const [senha, setSenha] = useState<string>('');
@@ -53,6 +55,7 @@ export function Cadastro() {
     const value = e.target.value.replace(/\D/g, '');
     if (value.length <= 11) {
       setTelefone(formatTelefone(value));
+      setTelefoneOriginal(value);
     }
   };
 
@@ -60,6 +63,7 @@ export function Cadastro() {
     const value = e.target.value.replace(/\D/g, '');
     if (value.length <= 11) {
       setCpf(formatCpf(value));
+      setCpfOriginal(value);
     }
   };
 
@@ -69,19 +73,19 @@ export function Cadastro() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!apelido || !nomecompleto || !email || !senha || !confirmaSenha || (userType === 'professor' && (!cpf || !telefone))) {
+    if (!apelido || !nomecompleto || !email || !senha || !confirmaSenha || (tipoUsuario === 'professor' && (!cpf || !telefone))) {
       setErrorMessage('Preencha todos os campos obrigatórios.');
       modalRef.current?.showModal();
       return;
     }
 
-    if (userType === 'professor' && cpf.length !== 14) {
+    if (tipoUsuario === 'professor' && cpf.length !== 14) {
       setErrorMessage('O CPF deve ter 11 dígitos.');
       modalRef.current?.showModal();
       return;
     }
 
-    if (userType === 'professor' && telefone.length !== 16) {
+    if (tipoUsuario === 'professor' && telefone.length !== 16) {
       setErrorMessage('O número de telefone deve ter 11 dígitos.');
       modalRef.current?.showModal();
       return;
@@ -110,11 +114,12 @@ export function Cadastro() {
     const formData = {
       apelido,
       nomecompleto,
-      cpf: userType === 'professor' ? cpf : undefined,
-      telefone: userType === 'professor' ? telefone : undefined,
+      cpf: tipoUsuario === 'professor' ? cpfOriginal : undefined,
+      telefone: tipoUsuario === 'professor' ? telefoneOriginal : undefined,
       instituicao,
       email,
-      senha
+      senha,
+      tipoUsuario
     };
 
     // e como falei, declarei async na função e uso o await no try catch (que é pra esperar a resposta da requisição)
@@ -127,6 +132,7 @@ export function Cadastro() {
       goToLogin(); // se der certo, manda o caba pra página de login
     } catch (error) {
       console.error('Erro ao enviar dados:', error);
+      console.log(formData);
       setErrorMessage('Erro ao enviar dados. Tente novamente mais tarde.');
       modalRef.current?.showModal();
     } finally {
@@ -138,7 +144,7 @@ export function Cadastro() {
   return (
     <>
       <CadastroPanel>
-      <UserTypeSelector userType={userType} setUserType={setUserType} />
+      <UserTypeSelector userType={tipoUsuario} setUserType={setTipoUsuario} />
         <DisableZoom />
         {isLoading && <Spinner />}
         <form onSubmit={handleSubmit}>
@@ -147,7 +153,7 @@ export function Cadastro() {
               <InputStyle placeholder="Insira o apelido" value={apelido} onChange={(e) => setApelido(e.target.value)} required/>
               <LeftLabel>Nome Completo</LeftLabel>
               <InputStyle placeholder="Insira o nome completo" value={nomecompleto} onChange={(e) => setNomecompleto(e.target.value)} required/>
-              {userType === 'professor' && (
+              {tipoUsuario === 'professor' && (
                 <>
                   <LeftLabel>CPF</LeftLabel>
                   <InputStyle placeholder="Insira o CPF" value={cpf} onChange={handleCpfChange} maxLength={14} required/>

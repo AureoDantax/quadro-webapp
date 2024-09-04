@@ -8,9 +8,9 @@ const api = axios.create({
 });
 
 export const enviarDadosCadastro = (formData: any) => {
-  return api.post('/cadastro', formData);
-  // o /cadastro é o endpoint que o backend espera receber os dados do formulário
-  // do mesmo jeito que o /login é o endpoint que o backend espera receber os dados do formulário de login
+  return api.post('api/usuarios/cadastrar', formData);
+  // o api/usuarios/cadastrar é o endpoint que o backend espera receber os dados do formulário
+  // do mesmo jeito que o /api/auth é o endpoint que o backend espera receber os dados do formulário de login
   // ou seja, é a URL que o backend vai ouvir pra receber os dados
   // e o formData é o objeto que contém os dados do formulário
 
@@ -24,7 +24,4 @@ export const enviarDadosCadastro = (formData: any) => {
 
 export const verificarDadosLogin = (formData: any) => {
   return api.post('/api/auth', formData);
-  // o /login é o endpoint que o backend espera receber os dados do formulário de login
-  // e o formData é o objeto que contém os dados do formulário de login
-  // o backend vai verificar as credenciais e devolver uma resposta de sucesso ou erro
 };
