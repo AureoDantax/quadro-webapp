@@ -6,6 +6,7 @@ interface InputStyleProps {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?: number;
+  required?: boolean;
 }
 
 const InputDiv = styled.input`
@@ -26,9 +27,9 @@ const InputDiv = styled.input`
   }
 `;
 
-const InputStyle: React.FC<InputStyleProps> = ({ type = 'text', placeholder = 'Insira', value, onChange, maxLength}) => {
+const InputStyle: React.FC<InputStyleProps> = ({ type = 'text', placeholder = 'Insira', value, onChange, maxLength, required}) => {
   return (
-    <InputDiv type={type} placeholder={placeholder} value={value} onChange={onChange} maxLength={maxLength}/>
+    <InputDiv type={type} placeholder={placeholder} value={value} onChange={onChange} maxLength={maxLength} required={required}/>
   );
 }
 

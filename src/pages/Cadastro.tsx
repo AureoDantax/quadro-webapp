@@ -65,7 +65,7 @@ export function Cadastro() {
 
   // No handle você precisa passar ASYNC pra declarar que é uma função assíncrona (funções que demoram pra concluir, sabe?)
   // então toda vez que for usar um try catch você provavelmente vai usar await pra esperar a resposta de algo e precisa passar async na função
-  // geralmente funções que demoram é chamadas de rede ou leitura e escrita de arquivos (qualquer coisa q envolva entrada e saida basicamente)
+  // geralmente funções que demoram é por causa de chamadas de rede ou leitura e escrita de arquivos (qualquer coisa q envolva entrada e saida basicamente)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -106,7 +106,7 @@ export function Cadastro() {
       return;
     }
     setIsLoading(true); // vou colocar um loading pra mostrar que tá enviando os dados (só por causa desse await :')
-    // cometi o erro de colocar ele antes das validações antes, então ele ficava rodando mesmo se tiver erro
+    // cometi o erro de colocar ele antes das validações, então ele ficava rodando mesmo se tiver erro
     const formData = {
       apelido,
       nomecompleto,
@@ -124,8 +124,6 @@ export function Cadastro() {
     try {
       const response = await enviarDadosCadastro(formData);
       console.log('Dados enviados com sucesso:', response.data);
-      setErrorMessage('Cadastro realizado com sucesso!');
-      modalRef.current?.showModal();
       goToLogin(); // se der certo, manda o caba pra página de login
     } catch (error) {
       console.error('Erro ao enviar dados:', error);
@@ -146,15 +144,15 @@ export function Cadastro() {
         <form onSubmit={handleSubmit}>
           <div>
               <LeftLabel>Apelido</LeftLabel>
-              <InputStyle placeholder="Insira o apelido" value={apelido} onChange={(e) => setApelido(e.target.value)} />
+              <InputStyle placeholder="Insira o apelido" value={apelido} onChange={(e) => setApelido(e.target.value)} required/>
               <LeftLabel>Nome Completo</LeftLabel>
-              <InputStyle placeholder="Insira o nome completo" value={nomecompleto} onChange={(e) => setNomecompleto(e.target.value)} />
+              <InputStyle placeholder="Insira o nome completo" value={nomecompleto} onChange={(e) => setNomecompleto(e.target.value)} required/>
               {userType === 'professor' && (
                 <>
                   <LeftLabel>CPF</LeftLabel>
-                  <InputStyle placeholder="Insira o CPF" value={cpf} onChange={handleCpfChange} maxLength={14} />
+                  <InputStyle placeholder="Insira o CPF" value={cpf} onChange={handleCpfChange} maxLength={14} required/>
                   <LeftLabel>Número de telefone</LeftLabel>
-                  <InputStyle placeholder="Insira o número" value={telefone} onChange={handleTelefoneChange} maxLength={15} />
+                  <InputStyle placeholder="Insira o número" value={telefone} onChange={handleTelefoneChange} maxLength={15} required/>
                 </>
               )}
               <LeftLabel>Instituição de Ensino</LeftLabel>
@@ -166,12 +164,12 @@ export function Cadastro() {
               </div>
               <div>
               <LeftLabel>E-mail</LeftLabel>
-              <InputStyle placeholder="Insira o e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <InputStyle placeholder="Insira o e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
               <LeftLabel>Senha</LeftLabel>
-              <InputStyle type="password" placeholder="Insira a senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+              <InputStyle type="password" placeholder="Insira a senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
               <LeftLabel>Confirme sua senha</LeftLabel>
-              <InputStyle type="password" placeholder="Confirme a senha" value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} />
-              <LargeButtonStyle type='submit' onClick={handleSubmit} disabled={isLoading}>
+              <InputStyle type="password" placeholder="Confirme a senha" value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} required/>
+              <LargeButtonStyle type='submit' disabled={isLoading}>
                 {isLoading ? 'Enviando...' : 'Cadastre-se'}
               </LargeButtonStyle>
               </div>
