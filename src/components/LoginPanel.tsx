@@ -38,7 +38,7 @@ interface LoginDivProps {
     children: ReactNode;
 }
 
-const LoginDiv: React.FC<LoginDivProps> = ({ children }) => {
+const LoginPanel: React.FC<LoginDivProps> = ({ children }) => {
     return (
         <>
             <BackgroundContainer>
@@ -50,4 +50,4 @@ const LoginDiv: React.FC<LoginDivProps> = ({ children }) => {
     );
 }
 
-export default LoginDiv;
+export default LoginPanel;
