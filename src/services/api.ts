@@ -3,7 +3,7 @@ import axios from 'axios';
 // Usamos AXIOS pra poupar tempo e não ter que configurar o fetch manualmente (mas é uma opção)
 // Então usamos axios com a URL base do nosso backend ai não precisamos lidar com JSON.stringify e repetir a URL toda hora
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api/auth',
+  baseURL: 'http://localhost:5000',
   // Substitua pela URL (endpoint) do seu backend
 });
 
