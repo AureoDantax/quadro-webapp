@@ -11,7 +11,7 @@ import ModalDialog from '../components/ModalDialog';
 import DisableZoom from "../components/DisableZoom";
 
 export function Login() {
-  const [email, setEmail] = useState<string>('');
+  const [login, setLogin] = useState<string>('');
   const [senha, setSenha] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -24,7 +24,7 @@ export function Login() {
     setIsLoading(true);
 
     const formData = {
-      email,
+      login,
       senha
     };
 
@@ -50,8 +50,8 @@ export function Login() {
           <LeftLabel>E-mail</LeftLabel>
           <InputStyle
             placeholder="Insira o e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
             required
           />
           <LeftLabel>Senha</LeftLabel>
