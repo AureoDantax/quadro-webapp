@@ -14,7 +14,7 @@ import DisableZoom from '../components/DisableZoom';
 export function Cadastro() {
   const [tipoUsuario, setTipoUsuario] = useState<'aluno' | 'professor'>('aluno');
   const [apelido, setApelido] = useState<string>('');
-  const [nomecompleto, setNomecompleto] = useState<string>('');
+  const [nome, setNomecompleto] = useState<string>('');
   const [cpf, setCpf] = useState<string>(''); //aparentemente ele não pode estar vazio, então coloquei uma string vazia para usar mascara
   const [telefoneOriginal, setTelefoneOriginal] = useState<string>(''); //esse é somente o número para o backend
   const [telefone, setTelefone] = useState<string>(''); //aparentemente ele não pode estar vazio, então coloquei uma string vazia
@@ -73,7 +73,7 @@ export function Cadastro() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!apelido || !nomecompleto || !email || !senha || !confirmaSenha || (tipoUsuario === 'professor' && (!cpf || !telefone))) {
+    if (!apelido || !nome || !email || !senha || !confirmaSenha || (tipoUsuario === 'professor' && (!cpf || !telefone))) {
       setErrorMessage('Preencha todos os campos obrigatórios.');
       modalRef.current?.showModal();
       return;
@@ -113,9 +113,9 @@ export function Cadastro() {
     // cometi o erro de colocar ele antes das validações, então ele ficava rodando mesmo se tiver erro
     const formData = {
       apelido,
-      nomecompleto,
-      cpf: tipoUsuario === 'professor' ? cpfOriginal : undefined,
-      telefone: tipoUsuario === 'professor' ? telefoneOriginal : undefined,
+      nome,
+      cpf: cpfOriginal,
+      telefone: telefoneOriginal,
       instituicao,
       email,
       senha,
@@ -144,41 +144,37 @@ export function Cadastro() {
   return (
     <>
       <CadastroPanel>
-      <UserTypeSelector userType={tipoUsuario} setUserType={setTipoUsuario} />
+        <UserTypeSelector userType={tipoUsuario} setUserType={setTipoUsuario} />
         <DisableZoom />
         {isLoading && <Spinner />}
         <form onSubmit={handleSubmit}>
           <div>
-              <LeftLabel>Apelido</LeftLabel>
-              <InputStyle placeholder="Insira o apelido" value={apelido} onChange={(e) => setApelido(e.target.value)} required/>
-              <LeftLabel>Nome Completo</LeftLabel>
-              <InputStyle placeholder="Insira o nome completo" value={nomecompleto} onChange={(e) => setNomecompleto(e.target.value)} required/>
-              {tipoUsuario === 'professor' && (
-                <>
-                  <LeftLabel>CPF</LeftLabel>
-                  <InputStyle placeholder="Insira o CPF" value={cpf} onChange={handleCpfChange} maxLength={14} required/>
-                  <LeftLabel>Número de telefone</LeftLabel>
-                  <InputStyle placeholder="Insira o número" value={telefone} onChange={handleTelefoneChange} maxLength={15} required/>
-                </>
-              )}
-              <LeftLabel>Instituição de Ensino</LeftLabel>
-              <SelectStyle value={instituicao} onChange={(e) => setInstituicao(e.target.value)}>
-                <option value="senacsantoamaro">SENAC (Centro Universitário Santo Amaro)</option>
-                <option value="senacitaquera">SENAC Itaquera</option>
-                <option value="senacsaomiguel">SENAC S.Miguel</option>
-              </SelectStyle>
-              </div>
-              <div>
-              <LeftLabel>E-mail</LeftLabel>
-              <InputStyle placeholder="Insira o e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-              <LeftLabel>Senha</LeftLabel>
-              <InputStyle type="password" placeholder="Insira a senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
-              <LeftLabel>Confirme sua senha</LeftLabel>
-              <InputStyle type="password" placeholder="Confirme a senha" value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} required/>
-              <LargeButtonStyle type='submit' disabled={isLoading}>
-                {isLoading ? 'Enviando...' : 'Cadastre-se'}
-              </LargeButtonStyle>
-              </div>
+            <LeftLabel>Apelido</LeftLabel>
+            <InputStyle placeholder="Insira o apelido" value={apelido} onChange={(e) => setApelido(e.target.value)} required />
+            <LeftLabel>Nome Completo</LeftLabel>
+            <InputStyle placeholder="Insira o nome completo" value={nome} onChange={(e) => setNomecompleto(e.target.value)} required />
+            <LeftLabel>CPF</LeftLabel>
+            <InputStyle placeholder="Insira o CPF" value={cpf} onChange={handleCpfChange} maxLength={14} required />
+            <LeftLabel>Número de telefone</LeftLabel>
+            <InputStyle placeholder="Insira o número" value={telefone} onChange={handleTelefoneChange} maxLength={15} required />
+            <LeftLabel>Instituição de Ensino</LeftLabel>
+            <SelectStyle value={instituicao} onChange={(e) => setInstituicao(e.target.value)}>
+              <option value="senacsantoamaro">SENAC (Centro Universitário Santo Amaro)</option>
+              <option value="senacitaquera">SENAC Itaquera</option>
+              <option value="senacsaomiguel">SENAC S.Miguel</option>
+            </SelectStyle>
+          </div>
+          <div>
+            <LeftLabel>E-mail</LeftLabel>
+            <InputStyle placeholder="Insira o e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <LeftLabel>Senha</LeftLabel>
+            <InputStyle type="password" placeholder="Insira a senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+            <LeftLabel>Confirme sua senha</LeftLabel>
+            <InputStyle type="password" placeholder="Confirme a senha" value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} required />
+            <LargeButtonStyle type='submit' disabled={isLoading}>
+              {isLoading ? 'Enviando...' : 'Cadastre-se'}
+            </LargeButtonStyle>
+          </div>
         </form>
         <ModalDialog ref={modalRef} onClose={() => modalRef.current?.close()}>
           <CenterLabel>{errorMessage}</CenterLabel>
